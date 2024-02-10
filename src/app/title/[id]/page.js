@@ -17,7 +17,7 @@ import MediaSection from '@/app/component/MediaSection';
 import CrewSection from '@/app/component/CrewSection';
 import SuggestionSection from '@/app/component/SuggestionSection';
 
-export default function page({ params }) {
+export default function Page({ params }) {
   const a = useContext(searchContext);
   // console.log(a.search)
   // const url = 'https://ott-details.p.rapidapi.com/advancedsearch?';

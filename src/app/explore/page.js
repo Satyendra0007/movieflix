@@ -26,7 +26,7 @@ export default function Explore() {
     // fetchData(url, options);
     (() => { setData(result); })();
     console.log(data)
-  }, [input]);
+  }, [data]);
 
   return (
     <>

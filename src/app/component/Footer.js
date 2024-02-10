@@ -3,7 +3,7 @@ import React from 'react'
 import { FaTiktok, FaFacebookSquare, FaInstagram, FaTwitter, FaYoutube, FaAmazon } from "react-icons/fa";
 
 export default function Footer() {
-  const logos = [<FaTiktok size={20} />, <FaInstagram size={20} />, <FaTwitter size={20} />, <FaYoutube size={20} />, <FaFacebookSquare size={20} />];
+  const logos = [];
 
   return (
     <div className='bg-black text-white'>
@@ -16,9 +16,14 @@ export default function Footer() {
         </div>
       </div>
       <div className="logos flex justify-evenly items-center py-4">
-        {logos.map((logo, index) => {
+        {/* {logos.map((logo, index) => {
           return <span key={index} >{logo}</span>
-        })}
+        })} */}
+        <FaTiktok size={20} />
+        <FaInstagram size={20} />
+        <FaTwitter size={20} />
+        <FaYoutube size={20} />
+        <FaFacebookSquare size={20} />
       </div>
       <div className="options"></div>
       <div className="add"></div>
