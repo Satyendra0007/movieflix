@@ -4,7 +4,7 @@ import Navbar from "@/app/component/Navbar"
 import Footer from './component/Footer'
 import SearchState from './context/SearchState'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 const poppins = Poppins({ subsets: ["latin"], weight: ['400'] })
 
 export const metadata = {
