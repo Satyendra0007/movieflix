@@ -8,11 +8,10 @@ export default function MediaSection({ photos = [], videos = [] }) {
       <div className="video bg-gray-100">
         <TagHeading type={"Videos"} count={30} showArrow={true} />
         <div className=" flex overflow-auto gap-3 px-3 hide-scrollbar">
-          <Video src={"https://i0.wp.com/vrscout.com/wp-content/uploads/2022/10/IronManVRQuest2_2.jpg?ssl=1"} duration={2.40} desc={"iron man tony starc"} />
-          <Video src={"https://i0.wp.com/vrscout.com/wp-content/uploads/2022/10/IronManVRQuest2_2.jpg?ssl=1"} duration={2.40} desc={"iron man tony starc bashdd jashjjf jhfsdj"} />
-          <Video src={"https://i0.wp.com/vrscout.com/wp-content/uploads/2022/10/IronManVRQuest2_2.jpg?ssl=1"} duration={2.40} desc={"iron man tony starc bashdd jashjjf jhfsdj"} />
-          <Video src={"https://i0.wp.com/vrscout.com/wp-content/uploads/2022/10/IronManVRQuest2_2.jpg?ssl=1"} duration={2.40} desc={"iron man tony starc bashdd jashjjf jhfsdj"} />
-          <Video src={"https://i0.wp.com/vrscout.com/wp-content/uploads/2022/10/IronManVRQuest2_2.jpg?ssl=1"} duration={2.40} desc={"iron man tony starc bashdd jashjjf jhfsdj"} />
+
+          {videos.map((video, index) => {
+            return <Video key={index} src={video.node.thumbnail.url} duration={video.node.runtime.value} desc={video.node.primaryTitle.originalTitleText.text} type={video.node.contentType.displayName.value} />
+          })}
         </div>
       </div>
       <div className="photo bg-gray-100">

@@ -16,13 +16,13 @@ export default function CrewSection({ casts = [], directors = [], writers = [] }
         })}
 
       </div>
-      <Line color={"gray-400"} />
+      <Line color={"gray-400"} size={"90%"} />
       <CrewList type={"Director"} list={directors} />
-      <Line color={"gray-400"} />
+      <Line color={"gray-400"} size={"90%"} />
       <CrewList type={"Writers"} list={writers} />
-      <Line color={"gray-400"} />
+      <Line color={"gray-400"} size={"90%"} />
       <CrewList type={"All cast & crew"} />
-      <Line color={"gray-400"} />
+      <Line color={"gray-400"} size={"90%"} />
     </section>
   )
 }

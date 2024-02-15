@@ -2,18 +2,23 @@
 import { useEffect, useState, useContext } from "react";
 import MovieCard from "../component/MovieCard";
 import result from "@/app/data/data.js"
+import api from "../data/api";
 import searchContext from "../context/SeachContext";
+import TagHeading from "../component/TagHeading";
+import PeopleCard from "../component/PeopleCard";
+
+
 
 export default function Explore() {
   const { search } = useContext(searchContext);
-
-  const [data, setData] = useState([]);
+  const [titleData, setTitleData] = useState([]);
+  const [peopleData, setPeopleData] = useState([]);
 
   const url = `https://imdb146.p.rapidapi.com/v1/find/?query=${search}`;
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'd36623c860msh68f680d6ed06af2p1975acjsn2e690aed07e7',
+      'X-RapidAPI-Key': process.env.API_KEY,
       'X-RapidAPI-Host': 'imdb146.p.rapidapi.com'
     }
   };
@@ -21,23 +26,40 @@ export default function Explore() {
   const fetchData = async (url, option) => {
     const response = await fetch(url, option);
     const results = await response.json();
-    setData(results.titleResults.results)
+    setTitleData(results.titleResults.results)
+    setPeopleData(result.nameResults.results)
   }
 
   useEffect(() => {
     // fetchData(url, options);
-    // console.log(search)
-    (() => { setData(result); })();
-  }, [data]);
+    (() => {
+      setTitleData(api.titleResults.results)
+      setPeopleData(api.nameResults.results)
+    })();
+  }, [titleData, peopleData]);
 
   return (
-    <>
-      <h1 className="text-center text-2xl py-4 font-semibold">Results for / <span className="text-red-500 font-normal capitalize">{search}</span></h1>
-      <div className="flex flex-wrap items-center justify-center">
-        {data.map((elem, key) => {
-          return <MovieCard key={key} elem={elem} />
-        })}
+    <section className=" py-10">
+      <div className="container mx-auto lg:w-[90vw] space-y-4">
+        <h1 className="text-center text-2xl font-semibold">Results for / <span className="text-red-500 font-normal capitalize">{search}</span></h1>
+        <div className="">
+          <TagHeading type={"Title"} />
+          <div className="flex flex-wrap items-center justify-center">
+            {titleData.map((elem, key) => {
+              return <MovieCard key={key} elem={elem} />
+            })}
+          </div>
+        </div>
+        <div className="h-[1px] bg-gray-400 w-full "></div>
+        <div className=" space-y-3">
+          <TagHeading type={"People"} />
+          <div className="flex flex-wrap items-center gap-5 justify-center">
+            {peopleData.map((elem, key) => {
+              return <PeopleCard key={key} elem={elem} />
+            })}
+          </div>
+        </div>
       </div>
-    </>
+    </section>
   )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Line({ color }) {
+export default function Line({ size }) {
   return (
-    <div className="h-[1px] w-[21rem] bg-gray-400 mx-auto">
+    <div className={`h-[1px] w-[${size}] bg-gray-300 mx-auto`}>
     </div>
   )
 }

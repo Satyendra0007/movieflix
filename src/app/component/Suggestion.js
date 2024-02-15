@@ -13,7 +13,7 @@ export default function Suggestion({ src, rating, title }) {
           <FaPlus size={20} fill='white' />
         </div>
       </div>
-      <div className="cantent py-3 space-y-2 ">
+      <div className="cantent py-3 space-y-2 min-h-32">
         <div className="rate flex items-center justify-between px-3 ">
           <span className='flex items-center gap-x-1 text-gray-800'><FaStar fill='yellow' />{rating}</span>
           <span className='text-blue-800'><FaRegStar /></span>

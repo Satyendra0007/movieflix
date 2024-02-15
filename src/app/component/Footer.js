@@ -13,12 +13,23 @@ export default function Footer() {
           <button className='outline-none py-2 px-6 bg-neutral-900 font-semibold text-blue-500 text-sm rounded-md'>Sign in for more access</button>
         </div>
       </div>
-      <div className="logos flex justify-evenly items-center py-4">
-        <FaTiktok size={20} />
-        <FaInstagram size={20} />
-        <FaTwitter size={20} />
-        <FaYoutube size={20} />
-        <FaFacebookSquare size={20} />
+      <div className="logos flex justify-evenly items-center py-4 md:w-1/3 mx-auto">
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+          <FaTiktok size={20} />
+        </span>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+          <FaInstagram size={20} />
+        </span>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+          <FaTwitter size={20} />
+        </span>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+          <FaYoutube size={20} />
+        </span>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+          <FaFacebookSquare size={20} />
+        </span>
+
       </div>
       <div className="options"></div>
       <div className="add"></div>
