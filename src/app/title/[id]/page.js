@@ -9,9 +9,8 @@ import { AiOutlineStock } from "react-icons/ai";
 import TagHeading from '@/app/component/TagHeading';
 import Line from '@/app/component/Line';
 import Budget from '@/app/component/Budget';
-import data from '@/app/data/title';
-import searchContext from '@/app/context/SeachContext';
-import { useContext } from 'react';
+import dumyData from '@/app/data/title';
+import { useEffect, useState } from 'react';
 import AwardSection from '@/app/component/AwardSection';
 import MediaSection from '@/app/component/MediaSection';
 import CrewSection from '@/app/component/CrewSection';
@@ -20,24 +19,28 @@ import CrewList from "@/app/component/CrewList";
 import TextCard from '@/app/component/TextCard';
 
 export default function Page({ params }) {
-  const a = useContext(searchContext);
-  // console.log(a.search)
-  // const url = 'https://ott-details.p.rapidapi.com/advancedsearch?';
-  // const options = {
-  //   method: 'GET',
-  //   headers: {
-  //     'X-RapidAPI-Key': 'd36623c860msh68f680d6ed06af2p1975acjsn2e690aed07e7',
-  //     'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
-  //   }
-  // };
 
-  // try {
-  //   const response = await fetch(url, options);
-  //   const result = await response.text();
-  //   console.log(result);
-  // } catch (error) {
-  //   console.error(error);
-  // }
+  const [data, setData] = useState(dumyData);
+  const url = `https://imdb146.p.rapidapi.com/v1/title/?id=${params.id}`;
+  // const url = `https://imdb146.p.rapidapi.com/v1/title/?id=tt0087884`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': "d36623c860msh68f680d6ed06af2p1975acjsn2e690aed07e7",
+      'X-RapidAPI-Host': 'imdb146.p.rapidapi.com'
+    }
+  };
+
+  const fetchData = async (url, option) => {
+    const response = await fetch(url, option);
+    const results = await response.json();
+    console.log(results)
+    setData(results);
+  }
+
+  useEffect(() => {
+    fetchData(url, options);
+  }, [])
 
   const formatDuration = (duration => {
     let seconds = parseInt(duration);
@@ -48,13 +51,13 @@ export default function Page({ params }) {
     <>
       <section className=" container mx-auto bg-gradient-to-b from-zinc-800 to-neutral-900 text-white md:hidden " >
         <div className="desc px-4 space-y-1 py-2 ">
-          <h1 className='text-2xl '>{data.originalTitleText.text}</h1>
+          <h1 className='text-2xl '>{data.originalTitleText?.text}</h1>
           <div className="flex items-center text-sm text-[#b5b4b4]">
-            <span>{data.releaseYear.year}</span> <LuDot size={23} color="#ffffffd4" /> <span>{data.certificate.rating}</span> <LuDot size={23} color="#ffffffd4" /> <span>{formatDuration(data.runtime.seconds)}</span>
+            <span>{data.releaseYear.year}</span> <LuDot size={23} color="#ffffffd4" /> <span>{data.certificate.rating}</span> <LuDot size={23} color="#ffffffd4" /> <span>{formatDuration(data.runtime?.seconds)}</span>
           </div>
         </div>
         <div className="banner relative ">
-          <Image className='w-full' priority={true} src={data.primaryVideos.edges[0].node.thumbnail.url} height={40} width={100} alt="spiderman banner"></Image>
+          <Image className='w-full' priority={true} src={data.primaryVideos.edges[0]?.node?.thumbnail?.url} height={40} width={100} alt="spiderman banner"></Image>
           <div className="content absolute w-full h-full top-0 bg-gradient-to-b from-transparent from-70% to-black flex items-end">
             <span className='opacity-80 p-2 tracking-wide'>Play trailer 2:30 </span>
           </div>
@@ -77,12 +80,12 @@ export default function Page({ params }) {
 
           <div className="about space-y-2 ">
             <div className="gener flex gap-x-2 overflow-auto hide-scrollbar">
-              {data.genres.genres.map((gener) => {
+              {data.genres?.genres.map((gener) => {
                 return <Gener key={gener.id} gener={gener.text} />
               })}
             </div>
             <div className="desc text-xs ">
-              {data.plot.plotText.plainText}
+              {data.plot?.plotText?.plainText}
             </div>
           </div>
         </div>
@@ -90,7 +93,7 @@ export default function Page({ params }) {
           <div className="rating flex items-center gap-1">
             <FaStar fill='yellow' />
             7.9  <span className='text-sm text-white/50'>/ 10</span>
-            <span className='text-sm text-white/50 ml-1'>{data.meterRanking.currentRank}</span>
+            <span className='text-sm text-white/50 ml-1'>{data.meterRanking?.currentRank}</span>
           </div>
           <div className="rate flex items-center gap-1 text-blue-500 font-semibold">
             <FaRegStar />
@@ -115,15 +118,15 @@ export default function Page({ params }) {
         </div>
         <div className="reviews flex gap-6 py-4 justify-center">
           <div className="user text-center text-blue-600">
-            <div className='font-bold'>{data.reviews.total}</div>
+            <div className='font-bold'>{data.reviews?.total}</div>
             <div className='text-sm'>User riviews</div>
           </div>
           <div className="critic text-center text-blue-600">
-            <div className='font-bold'>{data.criticReviewsTotal.total}</div>
+            <div className='font-bold'>{data.criticReviewsTotal?.total}</div>
             <div className='text-sm'>Critic riviews</div>
           </div>
           <div className="meta text-center text-blue-600">
-            <div className='font-bold bg-green-700 text-white inline px-[3px]'>{data.metacritic.metascore.score}</div>
+            <div className='font-bold bg-green-700 text-white inline px-[3px]'>{data.metacritic?.metascore?.score}</div>
             <div className='text-sm'>Metascore</div>
           </div>
         </div>
@@ -133,9 +136,9 @@ export default function Page({ params }) {
         <div className="container mx-auto lg:w-[90vw] space-y-5">
           <div className="row flex justify-between">
             <div className="desc px-4 space-y-1 py-2 ">
-              <h1 className='text-[3rem] '>{data.originalTitleText.text}</h1>
+              <h1 className='text-[3rem] '>{data.originalTitleText?.text}</h1>
               <div className="flex items-center text-base text-[#b5b4b4]">
-                <span>{data.releaseYear.year}</span> <LuDot size={23} color="#ffffffd4" /> <span>{data.certificate.rating}</span> <LuDot size={23} color="#ffffffd4" /> <span>{formatDuration(data.runtime.seconds)}</span>
+                <span>{data.releaseYear.year}</span> <LuDot size={23} color="#ffffffd4" /> <span>{data.certificate?.rating}</span> <LuDot size={23} color="#ffffffd4" /> <span>{formatDuration(data.runtime?.seconds)}</span>
               </div>
             </div>
             <div className="ratings flex gap-5 p-3 text-2xl">
@@ -144,7 +147,7 @@ export default function Page({ params }) {
                 <div className="rating flex items-center justify-center gap-1 cursor-pointer py-1 px-2 rounded-md hover:bg-white/10">
                   <FaStar fill='yellow' />
                   7.9  <span className='text-base text-white/50'>/ 10</span>
-                  <span className='text-sm text-white/50 ml-1'>{data.meterRanking.currentRank}</span>
+                  <span className='text-sm text-white/50 ml-1'>{data.meterRanking?.currentRank}</span>
                 </div>
               </div>
               <div className="text-lg text-gray-300  text-center">
@@ -169,7 +172,7 @@ export default function Page({ params }) {
               <FaPlus size={20} className='absolute top-1 left-2' />
             </div>
             <div className="banner relative w-4/6 ">
-              <Image className='w-full h-full' priority={true} src={data.primaryVideos.edges[0].node.thumbnail.url} height={40} width={100} alt="spiderman banner"></Image>
+              <Image className='w-full h-full' priority={true} src={data.primaryVideos.edges[0]?.node?.thumbnail?.url} height={40} width={100} alt="spiderman banner"></Image>
               <div className="content absolute w-full h-full top-0 bg-gradient-to-b from-transparent from-70% to-black flex items-end">
                 <span className='opacity-80 p-2 tracking-wide'>Play trailer 2:30 </span>
               </div>
@@ -177,18 +180,18 @@ export default function Page({ params }) {
             <div className="photo-video flex justify-center flex-col gap-1 w-1/6">
               <div className="video bg-white/5 w-full h-full flex justify-center items-center flex-col gap-2 text-xl cursor-pointer hover:bg-white/10 ">
                 <MdVideoLibrary />
-                <span>{data.videos.total} VIDEOS</span>
+                <span>{data.videos?.total} VIDEOS</span>
               </div>
               <div className="photo bg-white/5 w-full h-full flex justify-center items-center gap-2 flex-col text-xl cursor-pointer hover:bg-white/10 ">
                 <MdPhotoLibrary />
-                <span>{data.images.total} PHOTOS</span>
+                <span>{data.images?.total} PHOTOS</span>
               </div>
             </div>
           </div>
           <div className="row flex  ">
             <div className="left w-2/3 space-y-3">
               <div className="gener flex gap-x-2 overflow-auto hide-scrollbar">
-                {data.genres.genres.map((gener) => {
+                {data.genres?.genres.map((gener) => {
                   return <Gener key={gener.id} gener={gener.text} />
                 })}
               </div>
@@ -197,9 +200,9 @@ export default function Page({ params }) {
               </div>
               <div className="about space-y-2">
                 <Line size={"100%"} />
-                <CrewList type={"Director"} list={data.directors[0].credits} />
+                <CrewList type={"Director"} list={data.directors[0]?.credits} />
                 <Line size={"100%"} />
-                <CrewList type={"Writers"} list={data.writers[0].credits} />
+                <CrewList type={"Writers"} list={data.writers[0]?.credits} />
                 <Line size={"100%"} />
                 <CrewList type={"All cast & crew"} size={"100%"} />
                 <Line size={"100%"} />
@@ -220,15 +223,15 @@ export default function Page({ params }) {
               </div>
               <div className="reviews flex gap-6 py-4 justify-center">
                 <div className="user text-center text-blue-600">
-                  <div className='font-bold'>{data.reviews.total}</div>
+                  <div className='font-bold'>{data.reviews?.total}</div>
                   <div className='text-sm'>User riviews</div>
                 </div>
                 <div className="critic text-center text-blue-600">
-                  <div className='font-bold'>{data.criticReviewsTotal.total}</div>
+                  <div className='font-bold'>{data.criticReviewsTotal?.total}</div>
                   <div className='text-sm'>Critic riviews</div>
                 </div>
                 <div className="meta text-center text-blue-600">
-                  <div className='font-bold bg-green-700 text-white inline px-[3px]'>{data.metacritic.metascore.score}</div>
+                  <div className='font-bold bg-green-700 text-white inline px-[3px]'>{data.metacritic?.metascore?.score}</div>
                   <div className='text-sm'>Metascore</div>
                 </div>
               </div>
@@ -239,13 +242,13 @@ export default function Page({ params }) {
 
       <section className="container lg:w-[75vw] mx-auto">
 
-        <AwardSection wins={data.wins.total} nomination={data.nominations.total} award={data.prestigiousAwardSummary.award.text} awardCount={data.prestigiousAwardSummary.nominations} />
+        <AwardSection wins={data.wins?.total} nomination={data.nominations?.total} award={data.prestigiousAwardSummary?.award?.text} awardCount={data.prestigiousAwardSummary?.nominations} />
 
-        <MediaSection photos={data.titleMainImages.edges} />
+        <MediaSection photos={data.titleMainImages?.edges} />
 
-        <CrewSection casts={data.cast.edges} directors={data.directors[0].credits} writers={data.writers[0].credits} />
+        <CrewSection casts={data.cast?.edges} directors={data.directors[0]?.credits} writers={data.writers[0]?.credits} />
 
-        <SuggestionSection moreTitles={data.moreLikeThisTitles.edges} type={"More like this"} />
+        <SuggestionSection moreTitles={data.moreLikeThisTitles?.edges} type={"More like this"} />
 
         <section className="details space-y-2 my-3 bg-gray-100">
           <TagHeading type={"Deatails"} />
@@ -260,17 +263,17 @@ export default function Page({ params }) {
           <div className="px-4 space-x-3 py-2">
             <span className="md:text-lg"><strong>{"Country of origin"}</strong></span>
             <span className='text-blue-600 capitalize text-sm md:text-base'>
-              {data.releaseDate.country.text}
+              {data.releaseDate?.country?.text}
             </span>
           </div>
           <Line color={"gray-400"} />
           <div className="px-4 md:flex gap-x-4 items-center">
             <span className='md:text-lg'><strong>{"Country of origin"}</strong></span>
             <div className="lists ">
-              {data.spokenLanguages.spokenLanguages.map((language, key) => {
+              {data.spokenLanguages?.spokenLanguages.map((language, key) => {
                 return (
                   <div key={language.id} className='inline-flex items-center text-blue-500 capitalize text-sm  md:text-base'>
-                    {language.text} {(key !== (data.spokenLanguages.spokenLanguages.length - 1)) && <LuDot size={23} color="blue" />}
+                    {language.text} {(key !== (data.spokenLanguages?.spokenLanguages.length - 1)) && <LuDot size={23} color="blue" />}
                   </div>
                 )
               })}
@@ -280,23 +283,23 @@ export default function Page({ params }) {
           <div className="px-4 space-x-3 py-2">
             <span className="md:text-lg"><strong>{'Also known as'}</strong></span>
             <span className='text-blue-600 capitalize text-sm md:text-base'>
-              {data.akas.edges[0].node.text}
+              {data.akas?.edges[0]?.node?.text}
             </span>
           </div>
           <Line color={"gray-400"} />
           <div className="px-4 space-x-3 py-2 md:flex  items-center">
             <span className="md:text-lg"><strong>{'Filming locations'}</strong></span>
             <div className='text-blue-600 capitalize text-sm md:text-base'>
-              {data.filmingLocations.edges[0].node.location}
+              {data.filmingLocations?.edges[0]?.node?.location}
             </div>
           </div>
         </section>
 
         <section className="collection space-y-2 bg-gray-100  my-3">
           <TagHeading type={"Box office"} />
-          <Budget type={"Budget"} price={data.productionBudget.budget.amount} currency={data.productionBudget.budget.currency} />
-          <Budget type={"Lifetime Gross "} price={data.lifetimeGross.total.amount} currency={data.lifetimeGross.total.currency} />
-          <Budget type={"Worldwide Gross"} price={data.worldwideGross.total.amount} currency={data.worldwideGross.total.currency} />
+          <Budget type={"Budget"} price={data.productionBudget?.budget?.amount} currency={data.productionBudget?.budget?.currency} />
+          <Budget type={"Lifetime Gross "} price={data.lifetimeGross?.total?.amount} currency={data.lifetimeGross?.total?.currency} />
+          <Budget type={"Worldwide Gross"} price={data.worldwideGross?.total?.amount} currency={data.worldwideGross?.total?.currency} />
         </section>
 
         <section className="did-you-know bg-gray-100">

@@ -14,25 +14,22 @@ export default function Footer() {
         </div>
       </div>
       <div className="logos flex justify-evenly items-center py-4 md:w-1/3 mx-auto">
-        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/10'>
           <FaTiktok size={20} />
         </span>
-        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/10'>
           <FaInstagram size={20} />
         </span>
-        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/10'>
           <FaTwitter size={20} />
         </span>
-        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/10'>
           <FaYoutube size={20} />
         </span>
-        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/5'>
+        <span className='md:p-4 cursor-pointer rounded-full hover:bg-white/10'>
           <FaFacebookSquare size={20} />
         </span>
-
       </div>
-      <div className="options"></div>
-      <div className="add"></div>
       <div className="flex justify-center items-center py-4 gap-2">
         an <FaAmazon /> Company
       </div>
