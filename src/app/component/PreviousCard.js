@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { FaStar } from "react-icons/fa6";
 import { BsBookmarkPlus } from "react-icons/bs";
 
-export default function PreviousCard({ title }) {
+export default function PreviousCard({ title, size = "100%" }) {
   return (
-    <div className="item flex p-3 justify-between bg-white">
+    <div className={`item flex p-3 justify-between w-[${size}] bg-white`}>
       <div className="content flex items-center gap-x-3 ">
         {title.primaryImage ? <Image className='w-16' src={title.primaryImage.url} height={100} width={100} alt="thumbnail" priority={true} ></Image> : <div className="text-[4rem]"><BsBookmarkPlus /></div>}
         <div className='space-y-1'>

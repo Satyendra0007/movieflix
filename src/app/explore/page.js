@@ -12,6 +12,7 @@ export default function Explore() {
   const [titleData, setTitleData] = useState(api.titleResults.results);
   const [peopleData, setPeopleData] = useState(api.nameResults.results);
 
+
   const url = `https://imdb146.p.rapidapi.com/v1/find/?query=${search}`;
   const options = {
     method: 'GET',

@@ -10,7 +10,7 @@ export default function Video({ src, duration, desc, type }) {
   })
 
   return (
-    <div className="flex flex-shrink-0 flex-col w-72 ">
+    <div className="flex flex-shrink-0 flex-col w-52 ">
       <div className="image relative ">
         <Image className='w-full h-40' src={src} height={40} width={100} alt="spiderman banner"></Image>
         <div className="absolute w-full h-full top-0 left-0 right-0 bg-gradient-to-b from-transparent from-70% to-black flex items-end ">

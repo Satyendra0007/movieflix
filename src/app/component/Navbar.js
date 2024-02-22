@@ -31,7 +31,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className='bg-neutral-900/90 text-white py-4 text-center sticky top-0 left-0 right-0 z-10'>
+    <header className='bg-neutral-900/90 text-white py-4 text-center sticky top-0 left-0 right-0 z-20'>
       <div className="flex justify-around items-center">
         <div className="left flex items-center gap-x-3 md:gap-x-6">
           <div className="hamberger flex justify-center items-center gap-2 cursor-pointer md:py-1.5 md:px-5 hover:bg-white/5 rounded-md md:order-2" onClick={toogleMenu}  >

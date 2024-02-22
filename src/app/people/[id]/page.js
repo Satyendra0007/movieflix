@@ -51,7 +51,7 @@ export default function Page({ params }) {
   return (
 
     <>
-      <section className=" py-5 container mx-auto bg-gradient-to-b from-zinc-800 to-neutral-900 text-white md:hidden " >
+      <section className=" py-5 container mx-auto bg-gradient-to-b from-[#1b1918] to-[#1b1b1b] text-white md:hidden " >
         <div className="desc px-4 space-y-1 py-2 ">
           <h1 className='text-2xl '>{people.nameText?.text}</h1>
           <div className="flex items-center text-sm text-[#b5b4b4]">
@@ -109,7 +109,7 @@ export default function Page({ params }) {
         </div>
       </section >
 
-      <section className="bg-gradient-to-b from-zinc-800 to-neutral-900 text-white py-8  hidden md:block">
+      <section className="bg-gradient-to-b from-[#1b1918] to-[#1b1b1b] text-white py-8  hidden md:block">
         <div className="container mx-auto lg:w-[90vw] space-y-5">
           <div className="row flex justify-between">
             <div className="desc px-4 space-y-1 py-2 ">

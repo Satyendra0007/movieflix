@@ -17,6 +17,7 @@ import CrewSection from '@/app/component/CrewSection';
 import SuggestionSection from '@/app/component/SuggestionSection';
 import CrewList from "@/app/component/CrewList";
 import TextCard from '@/app/component/TextCard';
+import thumbnail from "@/app/images/thumbnail.jpg"
 
 export default function Page({ params }) {
 
@@ -49,15 +50,15 @@ export default function Page({ params }) {
 
   return (
     <>
-      <section className=" container mx-auto bg-gradient-to-b from-zinc-800 to-neutral-900 text-white md:hidden " >
+      <section className=" container mx-auto bg-gradient-to-b from-[#1b1918] to-[#1b1b1b] text-white md:hidden " >
         <div className="desc px-4 space-y-1 py-2 ">
           <h1 className='text-2xl '>{data.originalTitleText?.text}</h1>
           <div className="flex items-center text-sm text-[#b5b4b4]">
-            <span>{data.releaseYear.year}</span> <LuDot size={23} color="#ffffffd4" /> <span>{data.certificate.rating}</span> <LuDot size={23} color="#ffffffd4" /> <span>{formatDuration(data.runtime?.seconds)}</span>
+            <span>{data.releaseYear?.year}</span> <LuDot size={23} color="#ffffffd4" /> <span>{data.certificate?.rating}</span> <LuDot size={23} color="#ffffffd4" /> <span>{formatDuration(data.runtime?.seconds)}</span>
           </div>
         </div>
         <div className="banner relative ">
-          <Image className='w-full' priority={true} src={data.primaryVideos.edges[0]?.node?.thumbnail?.url} height={40} width={100} alt="spiderman banner"></Image>
+          <Image className='w-full' priority={true} src={data.primaryVideos?.edges[0]?.node?.thumbnail?.url} height={40} width={100} alt="image"></Image>
           <div className="content absolute w-full h-full top-0 bg-gradient-to-b from-transparent from-70% to-black flex items-end">
             <span className='opacity-80 p-2 tracking-wide'>Play trailer 2:30 </span>
           </div>
@@ -74,7 +75,7 @@ export default function Page({ params }) {
         </div>
         <div className="info flex p-3 gap-x-3  items-center ">
           <div className="image relative " >
-            <Image className='w-96' src="https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg" width={90} height={100} alt='image'></Image>
+            <Image className='w-96' src={thumbnail} width={90} height={100} alt='image'></Image>
             <FaPlus size={20} className='absolute top-1 left-2' />
           </div>
 
@@ -132,7 +133,7 @@ export default function Page({ params }) {
         </div>
       </section >
 
-      <section className="bg-gradient-to-b from-zinc-800 to-neutral-900 text-white py-8  hidden md:block">
+      <section className="bg-gradient-to-b from-[#1b1918] to-[#1b1b1b] text-white py-8  hidden md:block">
         <div className="container mx-auto lg:w-[90vw] space-y-5">
           <div className="row flex justify-between">
             <div className="desc px-4 space-y-1 py-2 ">
@@ -168,7 +169,7 @@ export default function Page({ params }) {
           </div>
           <div className="row flex  gap-1 w-full h-[70vh]">
             <div className="image relative w-1/4 h-full" >
-              <Image className='w-full h-full' src="https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_FMjpg_UX1000_.jpg" width={90} priority={true} height={100} alt='image'></Image>
+              <Image className='w-full h-full' src={thumbnail} width={90} priority={true} height={100} alt='image'></Image>
               <FaPlus size={20} className='absolute top-1 left-2' />
             </div>
             <div className="banner relative w-4/6 ">
@@ -268,7 +269,7 @@ export default function Page({ params }) {
           </div>
           <Line color={"gray-400"} />
           <div className="px-4 md:flex gap-x-4 items-center">
-            <span className='md:text-lg'><strong>{"Country of origin"}</strong></span>
+            <span className='md:text-lg'><strong>{"Languages"}</strong></span>
             <div className="lists ">
               {data.spokenLanguages?.spokenLanguages.map((language, key) => {
                 return (
@@ -305,12 +306,12 @@ export default function Page({ params }) {
         <section className="did-you-know bg-gray-100">
           <TagHeading type={"Did you know"} />
           <div className="cantainer p-4 space-y-3">
-            <TextCard title={"Trivia"} desc={data.trivia.edges[0] ? data.trivia.edges[0].node.text.plaidHtml : ""} />
-            <TextCard title={"Goofs"} desc={data.goofs.edges[0] ? data.goofs.edges[0].node.text.plaidHtml : ""} />
-            <TextCard title={"Quotes"} desc={data.quotes.edges[0] ? data.quotes.edges[0].node.lines[0].text : ""} />
-            <TextCard title={"Crazy credits"} desc={data.crazyCredits.edges[0] ? data.crazyCredits.edges[0].node.text.plaidHtml : ""} />
-            <TextCard title={"Alternative versions"} desc={data.alternateVersions.edges[0] ? data.alternateVersions.edges[0].node.text.plaidHtml : ""} />
-            <TextCard title={"Connections"} desc={data.connections.edges[0] ? data.connections.edges[0].node.associatedTitle.titleText.text : ""} />
+            <TextCard title={"Trivia"} desc={data.trivia?.edges[0] ? data.trivia.edges[0].node.text.plaidHtml : ""} />
+            <TextCard title={"Goofs"} desc={data.goofs?.edges[0] ? data.goofs.edges[0].node.text.plaidHtml : ""} />
+            <TextCard title={"Quotes"} desc={data.quotes?.edges[0] ? data.quotes.edges[0].node.lines[0].text : ""} />
+            <TextCard title={"Crazy credits"} desc={data.crazyCredits?.edges[0] ? data.crazyCredits.edges[0].node.text.plaidHtml : ""} />
+            <TextCard title={"Alternative versions"} desc={data.alternateVersions?.edges[0] ? data.alternateVersions.edges[0].node.text.plaidHtml : ""} />
+            <TextCard title={"Connections"} desc={data.connections?.edges[0] ? data.connections.edges[0].node.associatedTitle.titleText.text : ""} />
           </div>
         </section>
 
