@@ -178,9 +178,9 @@ export default function Page({ params }) {
 
         <AwardSection wins={people.wins?.total} nomination={people.nominations?.total} award={people.prestigiousAwardSummary?.award?.text} awardCount={data.prestigiousAwardSummary?.nominations} winCount={people.prestigiousAwardSummary?.wins} />
 
-        <MediaSection photos={people.images?.edges} videos={people.videos?.edges} />
+        {/* <MediaSection photos={people.images?.edges} videos={people.videos?.edges} /> */}
 
-        <SuggestionSection moreTitles={people.knownForFeature?.edges} people={true} type={"Known for"} />
+        {/* <SuggestionSection moreTitles={people.knownForFeature?.edges} people={true} type={"Known for"} /> */}
 
         <PeopleCreditSection upcomingList={people.unreleasedPrimaryCredits} previousList={people.releasedPrimaryCredits} profession={people.primaryProfessions} />
 

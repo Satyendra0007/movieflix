@@ -245,11 +245,11 @@ export default function Page({ params }) {
 
         <AwardSection wins={data.wins?.total} nomination={data.nominations?.total} award={data.prestigiousAwardSummary?.award?.text} awardCount={data.prestigiousAwardSummary?.nominations} />
 
-        <MediaSection photos={data.titleMainImages?.edges} />
+        {/* <MediaSection photos={data.titleMainImages?.edges} /> */}
 
         <CrewSection casts={data.cast?.edges} directors={data.directors[0]?.credits} writers={data.writers[0]?.credits} />
 
-        <SuggestionSection moreTitles={data.moreLikeThisTitles?.edges} type={"More like this"} />
+        {/* <SuggestionSection moreTitles={data.moreLikeThisTitles?.edges} type={"More like this"} /> */}
 
         <section className="details space-y-2 my-3 bg-gray-100">
           <TagHeading type={"Deatails"} />

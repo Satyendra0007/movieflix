@@ -6,7 +6,6 @@ import searchContext from "../context/SeachContext";
 import TagHeading from "../component/TagHeading";
 import PeopleCard from "../component/PeopleCard";
 
-
 export default function Explore() {
   const { search } = useContext(searchContext);
   const [titleData, setTitleData] = useState(api.titleResults.results);
