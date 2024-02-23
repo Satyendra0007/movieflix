@@ -22,8 +22,8 @@ import thumbnail from "@/app/images/thumbnail.jpg"
 export default function Page({ params }) {
 
   const [data, setData] = useState(dumyData);
+
   const url = `https://imdb146.p.rapidapi.com/v1/title/?id=${params.id}`;
-  // const url = `https://imdb146.p.rapidapi.com/v1/title/?id=tt0087884`;
   const options = {
     method: 'GET',
     headers: {

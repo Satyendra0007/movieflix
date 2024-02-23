@@ -47,7 +47,7 @@ export default function MediaSection({ photos = [], videos = [] }) {
     toogleButtons(photos, pSlide, prevBtnP, nextBtnP);
     if (videos.length !== 0)
       toogleButtons(videos, vSlide, prevBtnV, nextBtnV);
-  }, [clicked])
+  }, [clicked,photos,videos])
 
   // useEffect(() => {
   //   toogleButtons(vSlide);

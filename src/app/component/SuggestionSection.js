@@ -38,7 +38,7 @@ export default function SuggestionSection({ moreTitles = [], people, type }) {
     else {
       nextBtn.current.style.display = "none"
     }
-  }, [clicked])
+  }, [clicked,moreTitles.length])
 
 
   return (

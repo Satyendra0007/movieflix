@@ -41,7 +41,7 @@ export default function Page({ params }) {
 
   useEffect(() => {
     fetchData(url, options);
-  })
+  }, [])
 
   const formatDuration = (duration => {
     let seconds = parseInt(duration);
